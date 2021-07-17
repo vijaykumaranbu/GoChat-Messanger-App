@@ -5,6 +5,7 @@
     <color name="colorTextColor">#FFFFFF</color>
     <color name="colorTextPrimary">#212121</color>
     <color name="colorTextSecondary">#616161</color>
+    <color name="colorBackground">#EEEEEE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 </resources>

@@ -1,17 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.StatusFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+    </data>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/status"
-        android:textSize="@dimen/_20sdp"
-        android:textColor="@color/colorPrimary"
-        android:gravity="center"/>
+        android:background="@color/colorBackground"
+        tools:context=".fragments.StatusFragment">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_8sdp"
+            android:background="@color/ColorSecondary"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageProfile"
+                android:layout_width="@dimen/_45sdp"
+                android:layout_height="@dimen/_45sdp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/placeholder"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageAddStatus"
+                android:layout_width="@dimen/_18sdp"
+                android:layout_height="@dimen/_18sdp"
+                android:contentDescription="@string/app_name"
+                android:background="@drawable/background_image_add_status"
+                android:src="@drawable/ic_add"
+                app:tint="@color/ColorSecondary"
+                app:layout_constraintEnd_toEndOf="@+id/imageProfile"
+                app:layout_constraintBottom_toBottomOf="@+id/imageProfile"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageProfile"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/textUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/ubuntu_bold"
+                android:gravity="bottom"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/my_status"
+                android:textSize="@dimen/_12ssp"
+                android:textColor="@color/colorTextPrimary"/>
+
+            <TextView
+                android:id="@+id/textMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/ubuntu_regular"
+                android:gravity="top"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@string/top_to_add_status_update"
+                android:textSize="@dimen/_10ssp"
+                android:textColor="@color/colorTextSecondary"/>
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:fontFamily="@font/ubuntu_medium"
+            android:includeFontPadding="false"
+            android:text="@string/recent_updates"
+            android:textSize="@dimen/_10ssp"
+            android:textColor="@color/colorTextSecondary" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@color/ColorSecondary"
+            android:clipToPadding="false"
+            android:paddingBottom="@dimen/_50sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</layout>

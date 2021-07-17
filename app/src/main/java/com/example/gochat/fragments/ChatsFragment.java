@@ -37,7 +37,7 @@ public class ChatsFragment extends Fragment {
                 "Vikram",
                 "actor",
                 "28/06/21",
-                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mrdustbin.com%2Fen%2Fcinema%2Fsouth-indian-actor-name-with-photo%2F&psig=AOvVaw1qVay2nkJVaH6dxYvUECfd&ust=1626535272448000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiknKPy5_ECFQAAAAAdAAAAABAD"));
+                "https://www.google.com/url?sa=i&url=https%3A%2F%2Fin.pinterest.com%2Ft100997%2Factors%2F&psig=AOvVaw1qVay2nkJVaH6dxYvUECfd&ust=1626535272448000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCLiknKPy5_ECFQAAAAAdAAAAABAK"));
         contacts.add(new Contact(2,
                 "jiva",
                 "actor",

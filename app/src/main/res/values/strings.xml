@@ -8,4 +8,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="more">More</string>
     <string name="name">Name</string>
+    <string name="top_to_add_status_update">Top to add status update</string>
+    <string name="my_status">My Status</string>
+    <string name="recent_updates">Recent updates</string>
+    <string name="welcome_to_gochat">Welcome to GoChat</string>
+    <string name="read_our_privacy_policy_tap_agree_and_continue_to_accept_to_terms_of_service">Read our Privacy Policy. Tap Agree and continue to accept to Terms of Service.</string>
+    <string name="agree_and_continue">Agree and Continue</string>
+    <string name="enter_your_phone_number">Enter your phone number</string>
+    <string name="gochat_will_send_an_sms_message_to_verify_your_phone_number_what_s_my_number">GoChat will send an SMS message to verify your phone number. Whats your number?</string>
+    <string name="plus">+</string>
+    <string name="_91">91</string>
+    <string name="carrier_sms_charges_may_apply">Carrier SMS charges may apply</string>
+    <string name="next">Next</string>
+    <string name="to_start_calling_contacts_who_have_gochat_tap_button_at_the_bottom_of_your_screen">To start calling contacts who have GoChat, tap button at the bottom of your screen</string>
 </resources>

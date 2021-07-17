@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 2:
                     mainBinding.fabAction.setImageDrawable(
-                            ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_add_phone)
+                            ContextCompat.getDrawable(getApplicationContext(),R.drawable.ic_add_call)
                     );
                     break;
 
