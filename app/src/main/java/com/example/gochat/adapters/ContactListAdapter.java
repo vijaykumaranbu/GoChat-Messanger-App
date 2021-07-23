@@ -4,10 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.gochat.R;
 import com.example.gochat.databinding.ItemContainerContactBinding;
 import com.example.gochat.models.Contact;
 
@@ -25,17 +23,11 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        if(layoutInflater == null){
+        if (layoutInflater == null) {
             layoutInflater = LayoutInflater.from(parent.getContext());
         }
 
-        ItemContainerContactBinding itemContainerContactBinding = DataBindingUtil.inflate(
-                layoutInflater,
-                R.layout.item_container_contact,
-                parent,
-                false
-        );
-        return new ContactViewHolder(itemContainerContactBinding);
+        return null;
     }
 
     @Override
@@ -48,7 +40,7 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
         return contacts.size();
     }
 
-    public static class ContactViewHolder extends RecyclerView.ViewHolder{
+    public static class ContactViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemContainerContactBinding itemContainerContactBinding;
 
@@ -57,9 +49,8 @@ public class ContactListAdapter extends RecyclerView.Adapter<ContactListAdapter.
             this.itemContainerContactBinding = itemContainerContactBinding;
         }
 
-        public void setBinding(Contact contact){
-            itemContainerContactBinding.setContact(contact);
-            itemContainerContactBinding.executePendingBindings();
+        public void setBinding(Contact contact) {
+
         }
     }
 }

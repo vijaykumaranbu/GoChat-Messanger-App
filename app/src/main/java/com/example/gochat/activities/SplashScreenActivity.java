@@ -6,18 +6,21 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gochat.R;
+import com.example.gochat.databinding.ActivitySplashScreenBinding;
 
 public class SplashScreenActivity extends AppCompatActivity {
+
+    private ActivitySplashScreenBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
+        binding = ActivitySplashScreenBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         new Handler().postDelayed(() -> {
-            startActivity(new Intent(SplashScreenActivity.this, WelcomeScreenActivity.class));
+            startActivity(new Intent(SplashScreenActivity.this, SendOTPActivity.class));
             finish();
-        }, 3000);
+        }, 2000);
     }
 }

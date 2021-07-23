@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "530978259467",
+    "project_id": "gochat-e1d80",
+    "storage_bucket": "gochat-e1d80.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530978259467:android:c94814f3a45fa6d6fa7d0e",
+        "android_client_info": {
+          "package_name": "com.example.gochat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530978259467-a3ikohlu7qn2hqmadr568td5puupfi4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gochat",
+            "certificate_hash": "2028a8b05c4b02788d2e27fb34fccf395ec925fb"
+          }
+        },
+        {
+          "client_id": "530978259467-3j7e8s5oo8nd3ekjvv16pme4pqsenrcm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByfnU28w_8So9fVku1pt-y5TpzYs_MN0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530978259467-3j7e8s5oo8nd3ekjvv16pme4pqsenrcm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
