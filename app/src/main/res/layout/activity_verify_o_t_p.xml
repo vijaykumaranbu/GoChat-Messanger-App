@@ -1,101 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".activities.SendOTPActivity">
+    android:gravity="center_horizontal"
+    tools:context=".activities.VerifyOTPActivity">
 
     <ImageView
         android:layout_width="@dimen/_100sdp"
         android:layout_height="@dimen/_100sdp"
-        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_logo"
-        app:tint="@color/colorPrimary" />
+        app:tint="@color/colorPrimary"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:includeFontPadding="false"
-        android:text="@string/we_will_send_you_an_one_time_password_on_this_mobile_number"
-        android:textAlignment="center"
-        android:textColor="@color/colorTextSecondary"
-        android:textSize="@dimen/_13ssp" />
+        android:text="@string/otp_verification"
+        android:textColor="@color/colorTextPrimary"
+        android:textSize="@dimen/_18ssp"
+        android:textStyle="bold"/>
 
-    <Spinner
-        android:id="@+id/spinnerCountryCode"
-        android:layout_width="@dimen/_140sdp"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp" />
+        android:layout_marginTop="@dimen/_10sdp"
+        android:includeFontPadding="false"
+        android:text="@string/enter_the_otp_send_to"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/_12ssp"/>
+
+    <TextView
+        android:id="@+id/textMobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:includeFontPadding="false"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="@dimen/_12ssp"
+        android:textStyle="bold"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <EditText
+            android:id="@+id/inputCode1"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:includeFontPadding="false"
             android:background="@drawable/background_input"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textPlus"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:gravity="center"
-                android:includeFontPadding="false"
-                android:text="@string/plus"
-                android:textColor="@color/colorTextPrimary"
-                android:textSize="@dimen/_14ssp" />
-
-            <EditText
-                android:id="@+id/inputCountryCode"
-                android:layout_width="@dimen/_50sdp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/background_input"
-                android:hint="@string/cc"
-                android:imeOptions="actionNext"
-                android:importantForAutofill="no"
-                android:includeFontPadding="false"
-                android:inputType="number"
-                android:maxLength="5"
-                android:maxLines="1"
-                android:padding="@dimen/_10sdp"
-                android:text="@string/_91"
-                android:textAlignment="textEnd"
-                android:textColor="@color/colorTextPrimary"
-                android:textColorHint="@color/colorTextSecondary"
-                android:textSize="@dimen/_13ssp" />
-
-        </LinearLayout>
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
 
         <EditText
-            android:id="@+id/inputPhoneNumber"
-            android:layout_width="@dimen/_150sdp"
+            android:id="@+id/inputCode2"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:includeFontPadding="false"
+            android:background="@drawable/background_input"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
+
+        <EditText
+            android:id="@+id/inputCode3"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:includeFontPadding="false"
+            android:background="@drawable/background_input"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
+
+        <EditText
+            android:id="@+id/inputCode4"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:includeFontPadding="false"
+            android:background="@drawable/background_input"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
+
+        <EditText
+            android:id="@+id/inputCode5"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:includeFontPadding="false"
+            android:background="@drawable/background_input"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
+
+        <EditText
+            android:id="@+id/inputCode6"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:includeFontPadding="false"
+            android:background="@drawable/background_input"
+            android:gravity="center"
+            android:importantForAutofill="no"
+            android:maxLength="1"
+            android:inputType="number"
+            android:textSize="@dimen/_20ssp"
+            android:textColor="@color/colorTextPrimary"
+            android:textStyle="bold"
+            tools:ignore="LabelFor"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:includeFontPadding="false"
+            android:text="@string/did_t_receive_the_otp"
+            android:textColor="@color/colorTextPrimary"
+            android:textSize="@dimen/_12ssp"/>
+
+        <TextView
+            android:id="@+id/textResendOTP"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:background="@drawable/background_input"
-            android:hint="@string/phone_number"
-            android:imeOptions="actionDone"
-            android:importantForAutofill="no"
             android:includeFontPadding="false"
-            android:inputType="phone"
-            android:maxLength="13"
-            android:maxLines="1"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/colorTextPrimary"
-            android:textColorHint="@color/colorTextSecondary"
-            android:textSize="@dimen/_13ssp" />
+            android:text="@string/resend_otp"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -105,26 +184,23 @@
         android:layout_marginTop="@dimen/_20sdp">
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/sendOTP"
+            android:id="@+id/verifyOTP"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"
-            android:text="@string/send_otp"
-            android:textColor="@color/ColorSecondary"
+            android:text="@string/verify"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
-            app:cornerRadius="@dimen/_4sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/inputLayout" />
+            app:cornerRadius="@dimen/_4sdp"/>
 
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
-            android:indeterminateTint="@color/colorAccent"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:indeterminateTint="@color/colorAccent"/>
 
     </FrameLayout>
 

@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gochat.databinding.ActivityVerificationOTPBinding;
+import com.example.gochat.databinding.ActivityVerifyOTPBinding;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyOTPActivity extends AppCompatActivity {
 
-    private ActivityVerificationOTPBinding binding;
+    private ActivityVerifyOTPBinding binding;
     private String phoneNumber,verificationId;
     private PhoneAuthCredential phoneAuthCredential;
     private FirebaseAuth mAuth;
@@ -32,7 +32,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityVerificationOTPBinding.inflate(getLayoutInflater());
+        binding = ActivityVerifyOTPBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setUpInputCodes();
 
@@ -41,36 +41,33 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
         binding.textMobile.setText(phoneNumber);
 
-        binding.verifyOTP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(binding.inputCode1.toString().trim().isEmpty()
-                || binding.inputCode2.toString().trim().isEmpty()
-                || binding.inputCode3.toString().trim().isEmpty()
-                || binding.inputCode4.toString().trim().isEmpty()
-                || binding.inputCode5.toString().trim().isEmpty()
-                || binding.inputCode6.toString().trim().isEmpty()){
-                    Toast.makeText(VerifyOTPActivity.this, "Enter valid code", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        binding.verifyOTP.setOnClickListener(view -> {
+            if(binding.inputCode1.toString().trim().isEmpty()
+            || binding.inputCode2.toString().trim().isEmpty()
+            || binding.inputCode3.toString().trim().isEmpty()
+            || binding.inputCode4.toString().trim().isEmpty()
+            || binding.inputCode5.toString().trim().isEmpty()
+            || binding.inputCode6.toString().trim().isEmpty()){
+                Toast.makeText(VerifyOTPActivity.this, "Enter valid code", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                if(verificationId != null){
-                    binding.progressBar.setVisibility(View.VISIBLE);
-                    binding.verifyOTP.setVisibility(View.GONE);
+            if(verificationId != null){
+                binding.progressBar.setVisibility(View.VISIBLE);
+                binding.verifyOTP.setVisibility(View.GONE);
 
-                    String code = binding.inputCode1.getText().toString() +
-                            binding.inputCode2.getText().toString() +
-                            binding.inputCode3.getText().toString() +
-                            binding.inputCode4.getText().toString() +
-                            binding.inputCode5.getText().toString() +
-                            binding.inputCode6.getText().toString();
+                String code = binding.inputCode1.getText().toString() +
+                        binding.inputCode2.getText().toString() +
+                        binding.inputCode3.getText().toString() +
+                        binding.inputCode4.getText().toString() +
+                        binding.inputCode5.getText().toString() +
+                        binding.inputCode6.getText().toString();
 
-                    phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, code);
+                phoneAuthCredential = PhoneAuthProvider.getCredential(verificationId, code);
 
-                    mAuth = FirebaseAuth.getInstance();
+                mAuth = FirebaseAuth.getInstance();
 
-                    signInWithPhoneAuthCredential(phoneAuthCredential);
-                }
+                signInWithPhoneAuthCredential(phoneAuthCredential);
             }
         });
 

@@ -8,31 +8,31 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.gochat.databinding.ActivityVerifyOTPBinding;
+import com.example.gochat.databinding.ActivitySendOTPBinding;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.hbb20.CountryCodePicker;
 
 import java.util.concurrent.TimeUnit;
 
 public class SendOTPActivity extends AppCompatActivity {
 
-    private ActivityVerifyOTPBinding binding;
+    private ActivitySendOTPBinding binding;
     private PhoneAuthOptions phoneAuthOptions;
     private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityVerifyOTPBinding.inflate(getLayoutInflater());
+        binding = ActivitySendOTPBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         binding.sendOTP.setOnClickListener(view -> {
 
-            if(binding.inputCountryCode.getText().toString().trim().isEmpty()
-                    || binding.inputPhoneNumber.getText().toString().trim().isEmpty()){
+            if(binding.inputPhoneNumber.getText().toString().trim().isEmpty()){
                 Toast.makeText(this,"Enter Phone Number",Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -40,10 +40,9 @@ public class SendOTPActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(View.VISIBLE);
             binding.sendOTP.setVisibility(View.GONE);
 
-            phoneNumber = binding.textPlus.getText().toString()
-                    + binding.inputCountryCode.getText().toString()
-                    + binding.inputPhoneNumber.getText().toString();
-
+            phoneNumber = "+" +
+                    binding.ccp.getSelectedCountryCode() +
+                    binding.inputPhoneNumber.getText().toString();
 
             phoneAuthOptions = PhoneAuthOptions.newBuilder(FirebaseAuth.getInstance())
                             .setPhoneNumber(phoneNumber)       // Phone number to verify
