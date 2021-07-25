@@ -30,4 +30,7 @@
     <string name="resend_otp">RESEND OTP</string>
     <string name="verify">Verify</string>
     <string name="we_will_send_you_an_one_time_password_on_this_mobile_number">We will send you an One Time Password on this Mobile Number</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="about">About</string>
+    <string name="save">Save</string>
 </resources>

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.databinding.ActivityVerifyOTPBinding;
+import com.example.gochat.utitilies.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -108,7 +109,7 @@ public class VerifyOTPActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             binding.progressBar.setVisibility(View.GONE);
                             binding.verifyOTP.setVisibility(View.VISIBLE);
-                            Intent intent = new Intent(VerifyOTPActivity.this,MainActivity.class);
+                            Intent intent = new Intent(VerifyOTPActivity.this,ProfileActivity.class);
                             startActivity(intent);
                             finish();
                         } else {

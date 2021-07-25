@@ -9,6 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.databinding.ActivitySendOTPBinding;
+import com.example.gochat.utitilies.Constants;
+import com.example.gochat.utitilies.PreferenceManager;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
@@ -23,10 +25,17 @@ public class SendOTPActivity extends AppCompatActivity {
     private ActivitySendOTPBinding binding;
     private PhoneAuthOptions phoneAuthOptions;
     private String phoneNumber;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        preferenceManager = new PreferenceManager(getApplicationContext());
+        if(preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)){
+            Intent intent = new Intent(SendOTPActivity.this,MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
         binding = ActivitySendOTPBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
