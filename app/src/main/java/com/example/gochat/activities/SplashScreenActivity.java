@@ -6,6 +6,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gochat.R;
 import com.example.gochat.databinding.ActivitySplashScreenBinding;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -20,6 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         new Handler().postDelayed(() -> {
             startActivity(new Intent(SplashScreenActivity.this, SendOTPActivity.class));
+            overridePendingTransition(R.anim.static_animation,R.anim.zoom_out);
             finish();
         }, 2000);
     }
