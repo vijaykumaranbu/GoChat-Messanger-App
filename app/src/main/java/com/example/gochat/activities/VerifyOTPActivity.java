@@ -11,10 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.databinding.ActivityVerifyOTPBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
@@ -102,20 +99,18 @@ public class VerifyOTPActivity extends AppCompatActivity {
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            binding.progressBar.setVisibility(View.GONE);
-                            binding.verifyOTP.setVisibility(View.VISIBLE);
-                            Intent intent = new Intent(VerifyOTPActivity.this,ProfileActivity.class);
-                            startActivity(intent);
-                            finish();
-                        } else {
-                            binding.progressBar.setVisibility(View.GONE);
-                            binding.verifyOTP.setVisibility(View.VISIBLE);
-                            Toast.makeText(VerifyOTPActivity.this,"The Entered Code was invalid",Toast.LENGTH_LONG).show();
-                        }
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.verifyOTP.setVisibility(View.VISIBLE);
+                        Intent intent = new Intent(VerifyOTPActivity.this,ProfileActivity.class);
+                        intent.putExtra("phoneNumber",phoneNumber);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.verifyOTP.setVisibility(View.VISIBLE);
+                        Toast.makeText(VerifyOTPActivity.this,"The Entered Code was invalid",Toast.LENGTH_LONG).show();
                     }
                 });
     }

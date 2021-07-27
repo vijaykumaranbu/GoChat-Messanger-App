@@ -35,7 +35,8 @@
             android:maxLines="1"
             android:textSize="@dimen/_18ssp"
             android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <ImageView
             android:id="@+id/imageSignOut"
@@ -50,13 +51,31 @@
 
     </LinearLayout>
 
-   <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1"
-       android:clipToPadding="false"
-       android:padding="@dimen/_8sdp"
-       android:background="@drawable/background_contact_view"
-       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@drawable/background_contact_view">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:padding="@dimen/_8sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabAddUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_18sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_gravity="bottom|end"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_add"
+            app:backgroundTint="@color/colorPrimary"
+            app:tint="@color/ColorSecondary"/>
+
+    </FrameLayout>
 
 </LinearLayout>

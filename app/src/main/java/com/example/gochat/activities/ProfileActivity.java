@@ -13,9 +13,11 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.gochat.adapters.UserAdapter;
 import com.example.gochat.databinding.ActivityProfileBinding;
 import com.example.gochat.utitilies.Constants;
 import com.example.gochat.utitilies.PreferenceManager;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -27,6 +29,7 @@ public class ProfileActivity extends AppCompatActivity {
     private ActivityProfileBinding binding;
     private String encodeImage;
     private PreferenceManager preferenceManager;
+    private String phoneNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,12 @@ public class ProfileActivity extends AppCompatActivity {
         preferenceManager = new PreferenceManager(getApplicationContext());
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setListeners();
+        checkUserIsAvailable();
+    }
 
+    private void setListeners(){
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
         binding.imageAdd.setOnClickListener(view -> {
             Intent intent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
@@ -49,7 +57,10 @@ public class ProfileActivity extends AppCompatActivity {
             else if(binding.inputAbout.getText().toString().trim().isEmpty())
                 showToast("About can't be empty");
             else
-                putDataInCloudStore();
+                if(preferenceManager.getBoolean(Constants.KEY_IS_USER_AVAILABLE))
+                   updateUser();
+                else
+                    addUser();
         });
     }
 
@@ -85,11 +96,31 @@ public class ProfileActivity extends AppCompatActivity {
             }
     );
 
-    private void putDataInCloudStore(){
+    private void checkUserIsAvailable(){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        database.collection(Constants.KEY_COLLECTION_NAME)
+                .whereEqualTo(Constants.KEY_PHONE_NUMBER,phoneNumber)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful() && task.getResult() != null &&
+                            task.getResult().getDocuments().size() > 0){
+                        DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+                        preferenceManager.putBoolean(Constants.KEY_IS_USER_AVAILABLE,true);
+                        preferenceManager.putString(Constants.KEY_USER_ID,documentSnapshot.getId());
+                        binding.imageProfile.setImageBitmap(UserAdapter.decodeImage(documentSnapshot.getString(Constants.KEY_IMAGE)));
+                        binding.inputName.setText(String.format("%s",documentSnapshot.getString(Constants.KEY_NAME)));
+                        binding.inputAbout.setText(documentSnapshot.getString(Constants.KEY_ABOUT));
+                    }
+                })
+                .addOnFailureListener(e -> showToast(e.getMessage()));
+    }
+
+    private void addUser(){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
         HashMap<String,Object> data = new HashMap<>();
         data.put(Constants.KEY_NAME,binding.inputName.getText().toString().trim());
         data.put(Constants.KEY_ABOUT,binding.inputAbout.getText().toString().trim());
+        data.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
         data.put(Constants.KEY_IMAGE,encodeImage);
         database.collection(Constants.KEY_COLLECTION_NAME)
                 .add(data)
@@ -97,6 +128,31 @@ public class ProfileActivity extends AppCompatActivity {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
                     preferenceManager.putString(Constants.KEY_USER_ID,documentReference.getId());
                     preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString().trim());
+                    preferenceManager.putString(Constants.KEY_PHONE_NUMBER,phoneNumber);
+                    preferenceManager.putString(Constants.KEY_IMAGE,encodeImage);
+                    Intent intent = new Intent(ProfileActivity.this,MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                })
+                .addOnFailureListener( e -> {
+                    showToast(e.getMessage());
+                });
+    }
+
+    private void updateUser(){
+        FirebaseFirestore database = FirebaseFirestore.getInstance();
+        HashMap<String,Object> data = new HashMap<>();
+        data.put(Constants.KEY_NAME,binding.inputName.getText().toString().trim());
+        data.put(Constants.KEY_ABOUT,binding.inputAbout.getText().toString().trim());
+        data.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
+        data.put(Constants.KEY_IMAGE,encodeImage);
+        database.collection(Constants.KEY_COLLECTION_NAME)
+                .document(preferenceManager.getString(Constants.KEY_USER_ID))
+                .set(data)
+                .addOnSuccessListener(documentReference -> {
+                    preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
+                    preferenceManager.putString(Constants.KEY_NAME,binding.inputName.getText().toString().trim());
+                    preferenceManager.putString(Constants.KEY_PHONE_NUMBER,phoneNumber);
                     preferenceManager.putString(Constants.KEY_IMAGE,encodeImage);
                     Intent intent = new Intent(ProfileActivity.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -34,8 +34,8 @@
 
         <ImageView
             android:id="@+id/imageAdd"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_marginStart="@dimen/_45sdp"
             android:layout_gravity="center|bottom"
             android:contentDescription="@string/app_name"

@@ -2,12 +2,6 @@ package com.example.gochat.utitilies;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.drawable.Drawable;
-
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
 public class PreferenceManager {
 

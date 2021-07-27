@@ -30,9 +30,16 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
+        setListeners();
         loadUserDetails();
         getToken();
+    }
+
+    private void setListeners(){
         binding.imageSignOut.setOnClickListener(view -> signOut());
+        binding.fabAddUser.setOnClickListener(view -> {
+            startActivity(new Intent(MainActivity.this, UsersActivity.class));
+        });
     }
 
     private void loadUserDetails(){
@@ -52,9 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 database.collection(Constants.KEY_COLLECTION_NAME).document(
                         preferenceManager.getString(Constants.KEY_USER_ID));
         documentReference.update(Constants.KEY_NEW_TOKEN,token)
-                .addOnSuccessListener(aVoid -> {
-                    showToast("New Token Inserted...");
-                })
                 .addOnFailureListener(e -> {
                     showToast(e.getMessage());
                 });

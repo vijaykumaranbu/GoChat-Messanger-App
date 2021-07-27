@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GoChat">
-        <activity android:name=".activities.ProfileActivity"></activity>
+        <activity android:name=".activities.UsersActivity"></activity>
+        <activity android:name=".activities.ProfileActivity" />
         <activity
             android:name=".activities.VerifyOTPActivity"
             android:screenOrientation="portrait"
