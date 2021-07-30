@@ -98,6 +98,7 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
         <EditText
