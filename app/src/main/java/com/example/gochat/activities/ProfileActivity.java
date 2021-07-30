@@ -15,8 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.adapters.UserAdapter;
 import com.example.gochat.databinding.ActivityProfileBinding;
-import com.example.gochat.utitilies.Constants;
-import com.example.gochat.utitilies.PreferenceManager;
+import com.example.gochat.utilities.Constants;
+import com.example.gochat.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
         binding.save.setOnClickListener(view -> {
             if(encodeImage == null)
                 showToast("Select Image");
-            if(binding.inputName.getText().toString().trim().isEmpty())
+            else if(binding.inputName.getText().toString().trim().isEmpty())
                 showToast("Enter Your Name");
             else if(binding.inputAbout.getText().toString().trim().isEmpty())
                 showToast("About can't be empty");
@@ -107,7 +107,8 @@ public class ProfileActivity extends AppCompatActivity {
                         DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
                         preferenceManager.putBoolean(Constants.KEY_IS_USER_AVAILABLE,true);
                         preferenceManager.putString(Constants.KEY_USER_ID,documentSnapshot.getId());
-                        binding.imageProfile.setImageBitmap(UserAdapter.decodeImage(documentSnapshot.getString(Constants.KEY_IMAGE)));
+                        encodeImage = documentSnapshot.getString(Constants.KEY_IMAGE);
+                        binding.imageProfile.setImageBitmap(UserAdapter.decodeImage(encodeImage));
                         binding.inputName.setText(String.format("%s",documentSnapshot.getString(Constants.KEY_NAME)));
                         binding.inputAbout.setText(documentSnapshot.getString(Constants.KEY_ABOUT));
                     }

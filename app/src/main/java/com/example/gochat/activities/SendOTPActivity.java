@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.databinding.ActivitySendOTPBinding;
-import com.example.gochat.utitilies.Constants;
-import com.example.gochat.utitilies.PreferenceManager;
+import com.example.gochat.utilities.Constants;
+import com.example.gochat.utilities.PreferenceManager;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;

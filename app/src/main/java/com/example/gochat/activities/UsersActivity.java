@@ -1,5 +1,6 @@
 package com.example.gochat.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -7,19 +8,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.adapters.UserAdapter;
 import com.example.gochat.databinding.ActivityUsersBinding;
+import com.example.gochat.listeners.UserListener;
 import com.example.gochat.models.User;
-import com.example.gochat.utitilies.Constants;
-import com.example.gochat.utitilies.PreferenceManager;
+import com.example.gochat.utilities.Constants;
+import com.example.gochat.utilities.PreferenceManager;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsersActivity extends AppCompatActivity {
+public class UsersActivity extends AppCompatActivity implements UserListener {
 
     private ActivityUsersBinding binding;
     private PreferenceManager preferenceManager;
+    private final List<User> users = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,6 @@ public class UsersActivity extends AppCompatActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     loading(false);
                     if(queryDocumentSnapshots.size() > 0){
-                        List<User> users = new ArrayList<>();
                         String currentUserId = preferenceManager.getString(Constants.KEY_USER_ID);
                         for(QueryDocumentSnapshot queryDocumentSnapshot : queryDocumentSnapshots){
                             if(currentUserId.equals(queryDocumentSnapshot.getId())){
@@ -57,7 +59,7 @@ public class UsersActivity extends AppCompatActivity {
                             users.add(user);
                         }
                         if(users.size() > 0){
-                            UserAdapter adapter = new UserAdapter(users);
+                            UserAdapter adapter = new UserAdapter(users,this);
                             binding.userRecyclerView.setAdapter(adapter);
                         }
                         else
@@ -78,5 +80,13 @@ public class UsersActivity extends AppCompatActivity {
             binding.progressBar.setVisibility(View.VISIBLE);
         else
             binding.progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void OnUserClicked(User user) {
+        Intent intent = new Intent(UsersActivity.this,ChatActivity.class);
+        intent.putExtra(Constants.KEY_USER,user);
+        startActivity(intent);
+        finish();
     }
 }

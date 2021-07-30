@@ -10,8 +10,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gochat.databinding.ActivityMainBinding;
-import com.example.gochat.utitilies.Constants;
-import com.example.gochat.utitilies.PreferenceManager;
+import com.example.gochat.utilities.Constants;
+import com.example.gochat.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,17 +36,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setListeners(){
-        binding.imageSignOut.setOnClickListener(view -> signOut());
+        binding.imageMore.setOnClickListener(view -> signOut());
         binding.fabAddUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, UsersActivity.class));
         });
     }
 
     private void loadUserDetails(){
-        binding.textUserName.setText(preferenceManager.getString(Constants.KEY_NAME));
-        byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE),Base64.DEFAULT);
-        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-        binding.imageProfile.setImageBitmap(bitmap);
+            binding.textUserName.setText(preferenceManager.getString(Constants.KEY_NAME));
+            byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            binding.imageProfile.setImageBitmap(bitmap);
     }
 
     private void getToken(){

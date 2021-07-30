@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_horizontal"
+    android:background="@color/white"
     tools:context=".activities.VerifyOTPActivity">
 
     <ImageView
@@ -14,7 +15,7 @@
         android:layout_height="@dimen/_100sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_logo"
+        android:src="@drawable/ic_otp"
         app:tint="@color/colorPrimary"/>
 
     <TextView
@@ -23,7 +24,7 @@
         android:layout_marginTop="@dimen/_20sdp"
         android:includeFontPadding="false"
         android:text="@string/otp_verification"
-        android:textColor="@color/colorTextPrimary"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_18ssp"
         android:textStyle="bold"/>
 
@@ -33,7 +34,7 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:includeFontPadding="false"
         android:text="@string/enter_the_otp_send_to"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_12ssp"/>
 
     <TextView
@@ -42,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         android:includeFontPadding="false"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_12ssp"
         android:textStyle="bold"/>
 
@@ -64,7 +65,7 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
@@ -80,7 +81,7 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
@@ -96,8 +97,7 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
-            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
             tools:ignore="LabelFor"/>
 
         <EditText
@@ -112,7 +112,7 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
@@ -128,9 +128,9 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
-            android:textStyle="bold"
-            tools:ignore="LabelFor"/>
+            android:textColor="@color/colorPrimary"
+            tools:ignore="LabelFor"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/inputCode6"
@@ -144,7 +144,7 @@
             android:maxLength="1"
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
             android:text="@string/did_t_receive_the_otp"
-            android:textColor="@color/colorTextPrimary"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_12ssp"/>
 
         <TextView
@@ -189,9 +189,11 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"
+            android:backgroundTint="@color/colorPrimary"
             android:text="@string/verify"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
             app:cornerRadius="@dimen/_4sdp"/>
 
         <ProgressBar

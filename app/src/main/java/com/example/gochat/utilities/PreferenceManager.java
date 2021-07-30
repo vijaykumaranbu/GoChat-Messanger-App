@@ -1,4 +1,4 @@
-package com.example.gochat.utitilies;
+package com.example.gochat.utilities;
 
 import android.content.Context;
 import android.content.SharedPreferences;

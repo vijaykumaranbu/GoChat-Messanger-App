@@ -1,4 +1,4 @@
-package com.example.gochat.utitilies;
+package com.example.gochat.utilities;
 
 public class Constants {
     public static final String KEY_PREFERENCE_NAME = "chapAppPreference";
@@ -11,6 +11,6 @@ public class Constants {
     public static final String KEY_IS_SIGNED_IN = "isSignedIn";
     public static final String KEY_IS_USER_AVAILABLE = "isUserAvailable";
     public static final String KEY_NEW_TOKEN = "newToken";
-    public static final int REQUEST_CODE_STORAGE_PERMISSION = 1;
+    public static final String KEY_USER = "user";
 }
 

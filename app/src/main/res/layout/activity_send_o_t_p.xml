@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".activities.SendOTPActivity">
 
     <ImageView
@@ -25,7 +27,7 @@
         android:includeFontPadding="false"
         android:text="@string/we_will_send_you_an_one_time_password_on_this_mobile_number"
         android:textAlignment="center"
-        android:textColor="@color/colorTextSecondary"
+        android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_13ssp" />
 
 
@@ -72,13 +74,14 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sendOTP"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/_45sdp"
-            android:layout_marginStart="@dimen/_50sdp"
-            android:layout_marginEnd="@dimen/_50sdp"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_gravity="center"
             android:text="@string/send_otp"
-            android:textColor="@color/ColorSecondary"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
+            android:textStyle="bold"
             app:cornerRadius="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
