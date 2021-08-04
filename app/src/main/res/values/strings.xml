@@ -34,6 +34,8 @@
     <string name="about">About</string>
     <string name="save">Save</string>
     <string name="users">Users</string>
-    <string name="type_message">Type Message...</string>
+    <string name="type_message">Type Your Message</string>
     <string name="select_users">Select Users</string>
+    <string name="gochat">GoChat</string>
+    <string name="online">Online</string>
 </resources>

@@ -173,7 +173,7 @@
             android:layout_marginStart="@dimen/_8sdp"
             android:includeFontPadding="false"
             android:text="@string/resend_otp"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorError"
             android:textSize="@dimen/_12ssp"
             android:textStyle="bold"/>
 
@@ -203,7 +203,7 @@
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
             android:visibility="gone"
-            android:indeterminateTint="@color/colorAccent"/>
+            android:indeterminateTint="@color/colorError"/>
 
     </FrameLayout>
 

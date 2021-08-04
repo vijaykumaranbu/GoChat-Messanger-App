@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         preferenceManager = new PreferenceManager(getApplicationContext());
         setListeners();
-        loadUserDetails();
         getToken();
     }
 
@@ -40,13 +39,6 @@ public class MainActivity extends AppCompatActivity {
         binding.fabAddUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, UsersActivity.class));
         });
-    }
-
-    private void loadUserDetails(){
-            binding.textUserName.setText(preferenceManager.getString(Constants.KEY_NAME));
-            byte[] bytes = Base64.decode(preferenceManager.getString(Constants.KEY_IMAGE), Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            binding.imageProfile.setImageBitmap(bitmap);
     }
 
     private void getToken(){
