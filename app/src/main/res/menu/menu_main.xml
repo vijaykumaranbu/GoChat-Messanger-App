@@ -3,15 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/search_menu"
-        android:title="@string/search"
-        android:icon="@drawable/ic_search"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/profile_menu"
+        android:title="@string/profile"/>
 
     <item
-        android:id="@+id/more_menu"
-        android:title="@string/more"
-        android:icon="@drawable/ic_more"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/sign_out_menu"
+        android:title="@string/sign_out"/>
 
 </menu>

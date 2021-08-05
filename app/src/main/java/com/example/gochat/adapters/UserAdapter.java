@@ -33,7 +33,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
                 parent,
                 false
         );
-        return new UserViewHolder(itemContainerUserBinding,listener);
+        return new UserViewHolder(itemContainerUserBinding);
     }
 
     @Override
@@ -46,15 +46,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return users.size();
     }
 
-    static class UserViewHolder extends RecyclerView.ViewHolder {
+    class UserViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemContainerUserBinding itemContainerUserBinding;
-        private final UserListener listener;
 
-        public UserViewHolder(@NonNull ItemContainerUserBinding itemContainerUserBinding, UserListener listener) {
+        public UserViewHolder(@NonNull ItemContainerUserBinding itemContainerUserBinding) {
             super(itemContainerUserBinding.getRoot());
             this.itemContainerUserBinding = itemContainerUserBinding;
-            this.listener = listener;
         }
 
         public void setBinding(User user) {

@@ -14,7 +14,9 @@ import com.example.gochat.models.ChatMessage;
 import com.example.gochat.models.User;
 import com.example.gochat.utilities.Constants;
 import com.example.gochat.utilities.PreferenceManager;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,6 +37,7 @@ public class ChatActivity extends AppCompatActivity {
     private ChatAdapter chatAdapter;
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
+    private String conversionId = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,16 +105,49 @@ public class ChatActivity extends AppCompatActivity {
             binding.charRecyclerView.setVisibility(View.VISIBLE);
         }
         binding.progressBar.setVisibility(View.GONE);
+        if(conversionId == null)
+            checkForConversion();
     };
 
     private void sendMessage(){
-        HashMap<String,Object> message = new HashMap<>();
-        message.put(Constants.KEY_SENDER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
-        message.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
-        message.put(Constants.KEY_MESSAGE,binding.inputMessage.getText().toString().trim());
-        message.put(Constants.KEY_TIMESTAMP,new Date());
-        database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
-        binding.inputMessage.setText(null);
+        if(!binding.inputMessage.getText().toString().trim().isEmpty()) {
+            HashMap<String, Object> message = new HashMap<>();
+            message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
+            message.put(Constants.KEY_RECEIVER_ID, receiverUser.id);
+            message.put(Constants.KEY_MESSAGE, binding.inputMessage.getText().toString().trim());
+            message.put(Constants.KEY_TIMESTAMP, new Date());
+            database.collection(Constants.KEY_COLLECTION_CHAT).add(message);
+            if(conversionId != null){
+                updateConversion(binding.inputMessage.getText().toString().trim());
+            }
+            else {
+                HashMap<String,Object> conversion = new HashMap<>();
+                conversion.put(Constants.KEY_SENDER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
+                conversion.put(Constants.KEY_SENDER_NAME,preferenceManager.getString(Constants.KEY_NAME));
+                conversion.put(Constants.KEY_SENDER_IMAGE,preferenceManager.getString(Constants.KEY_IMAGE));
+                conversion.put(Constants.KEY_RECEIVER_ID,receiverUser.id);
+                conversion.put(Constants.KEY_RECEIVER_NAME,receiverUser.name);
+                conversion.put(Constants.KEY_RECEIVER_IMAGE,receiverUser.image);
+                conversion.put(Constants.KEY_LAST_MESSAGE,binding.inputMessage.getText().toString().trim());
+                conversion.put(Constants.KEY_TIMESTAMP,new Date());
+                addConversion(conversion);
+            }
+            binding.inputMessage.setText(null);
+        }
+    }
+
+    private void addConversion(HashMap<String,Object> conversion){
+        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                .add(conversion)
+                .addOnSuccessListener(documentReference -> conversionId = documentReference.getId());
+    }
+
+    private void updateConversion(String message){
+        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS).document(conversionId)
+                .update(
+                        Constants.KEY_LAST_MESSAGE,message,
+                        Constants.KEY_TIMESTAMP,new Date()
+                );
     }
 
     private void setListeners(){
@@ -130,5 +166,33 @@ public class ChatActivity extends AppCompatActivity {
     private String getReadableDateTime(Date date){
         return new SimpleDateFormat("MMM dd, yyyy - hh:mm a", Locale.getDefault()).format(date);
     }
+
+    private void checkForConversion(){
+        if(chatMessages.size() != 0){
+            checkForConversionRemotely(
+                    preferenceManager.getString(Constants.KEY_USER_ID),
+                    receiverUser.id
+            );
+            checkForConversionRemotely(
+                    receiverUser.id,
+                    preferenceManager.getString(Constants.KEY_USER_ID)
+            );
+        }
+    }
+
+    private void checkForConversionRemotely(String senderId,String receiverId){
+        database.collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                .whereEqualTo(Constants.KEY_SENDER_ID,senderId)
+                .whereEqualTo(Constants.KEY_RECEIVER_ID,receiverId)
+                .get()
+                .addOnCompleteListener(onCompleteListener);
+    }
+
+    private final OnCompleteListener<QuerySnapshot> onCompleteListener = task -> {
+      if(task.isSuccessful() && task.getResult() != null && task.getResult().getDocuments().size() > 0){
+          DocumentSnapshot documentSnapshot = task.getResult().getDocuments().get(0);
+          conversionId = documentSnapshot.getId();
+      }
+    };
 
 }

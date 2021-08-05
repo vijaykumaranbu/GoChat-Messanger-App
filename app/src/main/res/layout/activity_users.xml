@@ -6,28 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:background="@color/colorPrimary"
     tools:context=".activities.UsersActivity">
-
-    <View
-        android:id="@+id/actionView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="@drawable/background_action_view"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/supportActionView"/>
-
-    <View
-        android:id="@+id/supportActionView"
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="@dimen/_12sdp"
-        android:background="@null"
-        app:layout_constraintTop_toBottomOf="@+id/imageBack"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <ImageView
         android:id="@+id/imageBack"
@@ -37,6 +17,7 @@
         android:layout_marginStart="@dimen/_12sdp"
         android:contentDescription="@string/app_name"
         android:padding="@dimen/_6sdp"
+        android:background="?selectableItemBackgroundBorderless"
         android:src="@drawable/ic_back"
         app:tint="@color/white"
         app:layout_constraintTop_toTopOf="parent"
@@ -45,6 +26,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/ubuntu_bold"
         android:ellipsize="end"
         android:gravity="center"
         android:includeFontPadding="false"
@@ -53,7 +35,6 @@
         android:text="@string/select_users"
         android:textColor="@color/white"
         android:textSize="@dimen/_14sdp"
-        android:textStyle="bold"
         android:clickable="false"
         android:focusable="false"
         app:layout_constraintTop_toTopOf="@+id/imageBack"
@@ -61,9 +42,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/imageBack"/>
 
+    <View
+        android:id="@+id/supportActionView"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:background="@android:color/transparent"
+        app:layout_constraintTop_toBottomOf="@+id/imageBack"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:background="@drawable/background_users"
         app:layout_constraintTop_toBottomOf="@+id/supportActionView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

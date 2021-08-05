@@ -22,16 +22,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:text="@string/otp_verification"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_18ssp"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/_18ssp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/ubuntu_medium"
         android:includeFontPadding="false"
         android:text="@string/enter_the_otp_send_to"
         android:textColor="@color/colorPrimary"
@@ -42,10 +43,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
+        android:fontFamily="@font/ubuntu_bold"
         android:includeFontPadding="false"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/_12ssp"
-        android:textStyle="bold"/>
+        android:textSize="@dimen/_12ssp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +60,7 @@
             android:layout_width="@dimen/_40sdp"
             android:layout_height="@dimen/_45sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -66,7 +68,6 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
         <EditText
@@ -75,6 +76,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -82,7 +84,6 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
         <EditText
@@ -91,6 +92,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -98,7 +100,6 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
         <EditText
@@ -107,6 +108,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -114,7 +116,6 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
         <EditText
@@ -123,6 +124,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -139,6 +141,7 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_4sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:gravity="center"
             android:importantForAutofill="no"
@@ -146,7 +149,6 @@
             android:inputType="number"
             android:textSize="@dimen/_20ssp"
             android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
             tools:ignore="LabelFor"/>
 
     </LinearLayout>
@@ -162,6 +164,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_medium"
             android:text="@string/did_t_receive_the_otp"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/_12ssp"/>
@@ -171,11 +174,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/ubuntu_bold"
             android:includeFontPadding="false"
             android:text="@string/resend_otp"
             android:textColor="@color/colorError"
-            android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"/>
+            android:textSize="@dimen/_12ssp"/>
 
     </LinearLayout>
 
@@ -190,11 +193,11 @@
             android:layout_height="@dimen/_45sdp"
             android:layout_marginStart="@dimen/_50sdp"
             android:layout_marginEnd="@dimen/_50sdp"
+            android:fontFamily="@font/ubuntu_bold"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/verify"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
             app:cornerRadius="@dimen/_4sdp"/>
 
         <ProgressBar

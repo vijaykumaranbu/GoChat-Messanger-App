@@ -24,13 +24,12 @@
         android:layout_marginStart="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_30sdp"
         android:layout_marginEnd="@dimen/_20sdp"
+        android:fontFamily="@font/ubuntu_medium"
         android:includeFontPadding="false"
         android:text="@string/we_will_send_you_an_one_time_password_on_this_mobile_number"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/_13ssp" />
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,6 +51,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:hint="@string/phone_number"
             android:imeOptions="actionDone"
@@ -76,12 +76,12 @@
             android:id="@+id/sendOTP"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/_45sdp"
+            android:fontFamily="@font/ubuntu_bold"
             android:backgroundTint="@color/colorPrimary"
             android:layout_gravity="center"
             android:text="@string/send_otp"
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
-            android:textStyle="bold"
             app:cornerRadius="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

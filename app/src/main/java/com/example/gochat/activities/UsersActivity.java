@@ -41,7 +41,7 @@ public class UsersActivity extends AppCompatActivity implements UserListener {
     private void getUsers(){
         loading(true);
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_NAME)
+        database.collection(Constants.KEY_COLLECTION_USERS)
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     loading(false);

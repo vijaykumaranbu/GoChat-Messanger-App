@@ -98,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity {
 
     private void checkUserIsAvailable(){
         FirebaseFirestore database = FirebaseFirestore.getInstance();
-        database.collection(Constants.KEY_COLLECTION_NAME)
+        database.collection(Constants.KEY_COLLECTION_USERS)
                 .whereEqualTo(Constants.KEY_PHONE_NUMBER,phoneNumber)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -123,7 +123,7 @@ public class ProfileActivity extends AppCompatActivity {
         data.put(Constants.KEY_ABOUT,binding.inputAbout.getText().toString().trim());
         data.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
         data.put(Constants.KEY_IMAGE,encodeImage);
-        database.collection(Constants.KEY_COLLECTION_NAME)
+        database.collection(Constants.KEY_COLLECTION_USERS)
                 .add(data)
                 .addOnSuccessListener(documentReference -> {
                     preferenceManager.putBoolean(Constants.KEY_IS_SIGNED_IN,true);
@@ -147,7 +147,7 @@ public class ProfileActivity extends AppCompatActivity {
         data.put(Constants.KEY_ABOUT,binding.inputAbout.getText().toString().trim());
         data.put(Constants.KEY_PHONE_NUMBER,phoneNumber);
         data.put(Constants.KEY_IMAGE,encodeImage);
-        database.collection(Constants.KEY_COLLECTION_NAME)
+        database.collection(Constants.KEY_COLLECTION_USERS)
                 .document(preferenceManager.getString(Constants.KEY_USER_ID))
                 .set(data)
                 .addOnSuccessListener(documentReference -> {

@@ -38,4 +38,6 @@
     <string name="select_users">Select Users</string>
     <string name="gochat">GoChat</string>
     <string name="online">Online</string>
+    <string name="sign_out">Sign out</string>
+    <string name="profile">Profile</string>
 </resources>

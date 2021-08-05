@@ -78,6 +78,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:hint="@string/name"
             android:maxLines="1"
@@ -85,8 +86,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="@dimen/_14ssp"
-            android:textColor="@color/colorTextPrimary"
-            android:textStyle="bold"/>
+            android:textColor="@color/colorTextPrimary"/>
 
     </LinearLayout>
 
@@ -115,6 +115,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
             android:includeFontPadding="false"
+            android:fontFamily="@font/ubuntu_bold"
             android:background="@drawable/background_input"
             android:hint="@string/about"
             android:maxLines="1"
@@ -122,8 +123,7 @@
             android:importantForAutofill="no"
             android:inputType="text"
             android:textSize="@dimen/_14ssp"
-            android:textColor="@color/colorTextPrimary"
-            android:textStyle="bold"/>
+            android:textColor="@color/colorTextPrimary"/>
 
     </LinearLayout>
 
@@ -132,11 +132,11 @@
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_45sdp"
         android:layout_marginTop="@dimen/_20sdp"
+        android:fontFamily="@font/ubuntu_bold"
         android:backgroundTint="@color/colorPrimary"
         android:text="@string/save"
         android:textSize="@dimen/_12ssp"
         android:textColor="@color/white"
-        app:cornerRadius="@dimen/_4sdp"
-        android:textStyle="bold"/>
+        app:cornerRadius="@dimen/_4sdp"/>
 
 </LinearLayout>
