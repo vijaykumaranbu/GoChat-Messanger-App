@@ -30,7 +30,7 @@
         android:layout_marginStart="@dimen/_8sdp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder"
-        app:riv_corner_radius="@dimen/_8sdp"
+        app:riv_corner_radius="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageBack"/>
 

@@ -32,7 +32,7 @@
             android:contentDescription="@string/app_name"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
-            app:riv_corner_radius="@dimen/_12sdp"
+            app:riv_corner_radius="@dimen/_24sdp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,14 +40,14 @@
 
         <ImageView
             android:id="@+id/imageAdd"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
             android:layout_marginEnd="@dimen/_8sdp"
             android:layout_marginBottom="@dimen/_8sdp"
             android:contentDescription="@string/app_name"
             android:background="@drawable/background_add_profile"
             android:src="@drawable/ic_camera"
-            android:padding="@dimen/_12sdp"
+            android:padding="@dimen/_10sdp"
             app:tint="@color/white"
             app:layout_constraintEnd_toEndOf="@+id/imageProfile"
             app:layout_constraintBottom_toBottomOf="@id/imageProfile"/>

@@ -1,19 +1,22 @@
 package com.example.gochat.activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.ActionMode;
 
 import com.example.gochat.R;
 import com.example.gochat.adapters.RecentChatAdapter;
+import com.example.gochat.adapters.UserAdapter;
 import com.example.gochat.databinding.ActivityMainBinding;
+import com.example.gochat.databinding.DialogSignOutBinding;
 import com.example.gochat.listeners.ConversionListener;
 import com.example.gochat.models.ChatMessage;
 import com.example.gochat.models.User;
@@ -59,10 +62,28 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
         database = FirebaseFirestore.getInstance();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        loadDetails();
+    }
+
+    private void loadDetails(){
+        String image = preferenceManager.getString(Constants.KEY_IMAGE);
+        binding.imageProfile.setImageBitmap(UserAdapter.decodeImage(image));
+        binding.textUserName.setText(preferenceManager.getString(Constants.KEY_NAME));
+    }
+
     private void setListeners(){
         binding.fabAddUser.setOnClickListener(view -> {
             startActivity(new Intent(MainActivity.this, UsersActivity.class));
         });
+        binding.imageProfile.setOnClickListener(view -> {
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("phoneNumber",preferenceManager.getString(Constants.KEY_PHONE_NUMBER));
+            startActivity(intent);
+        });
+        binding.imageSignOut.setOnClickListener(view -> showSignOutDialog());
     }
 
     private void listenConversion(){
@@ -155,6 +176,18 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
                 });
     }
 
+    private void showSignOutDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        DialogSignOutBinding binding = DialogSignOutBinding.inflate(getLayoutInflater());
+        builder.setView(binding.getRoot());
+        AlertDialog dialogSignOut = builder.create();
+        if(dialogSignOut.getWindow() != null)
+            dialogSignOut.getWindow().setBackgroundDrawable(new ColorDrawable(0));
+        binding.btnCancel.setOnClickListener(view -> dialogSignOut.dismiss());
+        binding.btnSignOut.setOnClickListener(view -> signOut());
+        dialogSignOut.show();
+    }
+
     private void showToast(String message){
         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
     }
@@ -164,26 +197,5 @@ public class MainActivity extends AppCompatActivity implements ConversionListene
         Intent intent = new Intent(MainActivity.this,ChatActivity.class);
         intent.putExtra(Constants.KEY_USER,user);
         startActivity(intent);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
-        return true;
-    }
-
-    @SuppressLint("NonConstantResourceId")
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.profile_menu:
-                startActivity(new Intent(MainActivity.this,ProfileActivity.class));
-                return true;
-            case R.id.sign_out_menu:
-                signOut();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
     }
 }

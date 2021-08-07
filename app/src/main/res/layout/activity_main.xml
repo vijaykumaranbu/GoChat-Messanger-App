@@ -8,18 +8,34 @@
     android:background="@color/colorPrimary"
     tools:context=".activities.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/imageProfile"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_marginStart="@dimen/_14sdp"
-        android:includeFontPadding="false"
-        android:fontFamily="@font/ubuntu_bold"
-        android:text="@string/gochat"
-        android:textColor="@color/ColorAccent"
-        android:textSize="@dimen/_18sdp"
+        android:contentDescription="@string/app_name"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder"
+        app:riv_corner_radius="@dimen/_10sdp"
         app:layout_constraintTop_toTopOf="@id/imageSearch"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="@+id/imageSearch"/>
+
+    <TextView
+        android:id="@+id/textUserName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/ubuntu_bold"
+        android:ellipsize="end"
+        android:textColor="@color/ColorAccent"
+        android:textSize="@dimen/_16ssp"
+        app:layout_constraintTop_toTopOf="@+id/imageProfile"
+        app:layout_constraintStart_toEndOf="@+id/imageProfile"
+        app:layout_constraintEnd_toStartOf="@+id/imageSearch"
+        app:layout_constraintBottom_toBottomOf="@id/imageProfile"/>
 
     <ImageView
         android:id="@+id/imageSearch"
@@ -33,11 +49,11 @@
         app:tint="@color/white"
         android:clickable="true"
         android:focusable="true"
-        app:layout_constraintTop_toTopOf="@id/imageMore"
-        app:layout_constraintEnd_toStartOf="@id/imageMore"/>
+        app:layout_constraintTop_toTopOf="@id/imageSignOut"
+        app:layout_constraintEnd_toStartOf="@id/imageSignOut"/>
 
     <ImageView
-        android:id="@+id/imageMore"
+        android:id="@+id/imageSignOut"
         android:layout_width="@dimen/_30sdp"
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_12sdp"
@@ -45,7 +61,7 @@
         android:contentDescription="@string/app_name"
         android:background="@drawable/background_icon"
         android:padding="@dimen/_4sdp"
-        android:src="@drawable/ic_more"
+        android:src="@drawable/ic_sign_out"
         app:tint="@color/white"
         android:clickable="true"
         android:focusable="true"
@@ -58,7 +74,7 @@
         android:layout_height="0.5dp"
         android:layout_marginTop="@dimen/_12sdp"
         android:background="@android:color/transparent"
-        app:layout_constraintTop_toBottomOf="@+id/imageMore"
+        app:layout_constraintTop_toBottomOf="@+id/imageSignOut"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 

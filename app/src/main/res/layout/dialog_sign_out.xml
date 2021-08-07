@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutDialogSignOut"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_12sdp"
+        android:paddingEnd="@dimen/_12sdp"
+        android:orientation="vertical"
+        android:background="@drawable/background_dialog_sign_out"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    <TextView
+        android:id="@+id/textSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:includeFontPadding="false"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/ubuntu_bold"
+        android:text="@string/sign_out"
+        android:textColor="@color/colorError"
+        android:textSize="@dimen/_18ssp"/>
+
+    <TextView
+        android:id="@+id/textDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:includeFontPadding="false"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/are_your_sure_you_want_to_sign_out"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14ssp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/cancel"
+            android:textColor="@color/ColorAccent"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/colorPrimary"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSignOut"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_4sdp"
+            android:fontFamily="@font/ubuntu_bold"
+            android:text="@string/sign_out"
+            android:textColor="@color/ColorAccent"
+            android:textSize="@dimen/_12ssp"
+            android:textAllCaps="false"
+            app:backgroundTint="@color/colorError"/>
+
+    </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
