@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 
+import com.example.gochat.R;
 import com.example.gochat.adapters.ChatAdapter;
 import com.example.gochat.databinding.ActivityChatBinding;
 import com.example.gochat.models.ChatMessage;
@@ -19,6 +20,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
@@ -28,8 +30,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
     private ActivityChatBinding binding;
     private User receiverUser;
@@ -38,6 +41,7 @@ public class ChatActivity extends AppCompatActivity {
     private PreferenceManager preferenceManager;
     private FirebaseFirestore database;
     private String conversionId = null;
+    private Boolean isReceiverAvailable = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,12 @@ public class ChatActivity extends AppCompatActivity {
         loadUserDetails();
         init();
         listenMessage();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        checkReceiverIsAvailable();
     }
 
     private void init(){
@@ -76,6 +86,27 @@ public class ChatActivity extends AppCompatActivity {
                 .whereEqualTo(Constants.KEY_SENDER_ID,receiverUser.id)
                 .whereEqualTo(Constants.KEY_RECEIVER_ID,preferenceManager.getString(Constants.KEY_USER_ID))
                 .addSnapshotListener(eventListener);
+    }
+
+    private void checkReceiverIsAvailable(){
+        database.collection(Constants.KEY_COLLECTION_USERS)
+                .document(receiverUser.id)
+                .addSnapshotListener(ChatActivity.this, (value, error) -> {
+                    if(error != null){
+                        return;
+                    }
+                    if(value != null){
+                        if(value.getLong(Constants.KEY_AVAILABILITY) != null){
+                            int available = Objects.requireNonNull(
+                                    value.getLong(Constants.KEY_AVAILABILITY)).intValue();
+                            isReceiverAvailable = available == 1;
+                        }
+                    }
+                    if(isReceiverAvailable)
+                        binding.textUserAvailable.setText(R.string.online);
+                    else
+                        binding.textUserAvailable.setText(R.string.offline);
+                });
     }
 
     private final EventListener<QuerySnapshot> eventListener = (value, error) -> {

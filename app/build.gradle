@@ -63,4 +63,8 @@ dependencies {
     // Country Code Picker
     implementation 'com.hbb20:ccp:2.4.5'
 
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
 }
