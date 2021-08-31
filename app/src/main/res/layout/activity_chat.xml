@@ -134,8 +134,8 @@
         android:importantForAutofill="no"
         android:inputType="text"
         android:textSize="@dimen/_13ssp"
-        android:textColor="@color/ColorAccent"
-        android:textColorHint="@color/ColorAccent"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageSend"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -149,7 +149,7 @@
         android:background="@drawable/background_input_message"
         android:padding="@dimen/_8sdp"
         app:srcCompat="@drawable/ic_send"
-        app:tint="@color/ColorAccent"
+        app:tint="@color/colorAccent"
         app:layout_constraintTop_toTopOf="@id/inputMessage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/inputMessage"/>

@@ -58,9 +58,10 @@
             android:layout_marginEnd="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/cancel"
-            android:textColor="@color/ColorAccent"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12ssp"
             android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
             app:backgroundTint="@color/colorPrimary"/>
 
         <com.google.android.material.button.MaterialButton
@@ -71,9 +72,10 @@
             android:layout_marginStart="@dimen/_4sdp"
             android:fontFamily="@font/ubuntu_bold"
             android:text="@string/sign_out"
-            android:textColor="@color/ColorAccent"
+            android:textColor="@color/colorAccent"
             android:textSize="@dimen/_12ssp"
             android:textAllCaps="false"
+            app:cornerRadius="@dimen/_30sdp"
             app:backgroundTint="@color/colorError"/>
 
     </LinearLayout>

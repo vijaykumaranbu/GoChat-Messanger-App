@@ -3,8 +3,11 @@ package com.example.gochat.activities;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -13,6 +16,8 @@ import com.example.gochat.adapters.ChatAdapter;
 import com.example.gochat.databinding.ActivityChatBinding;
 import com.example.gochat.models.ChatMessage;
 import com.example.gochat.models.User;
+import com.example.gochat.network.ApiClient;
+import com.example.gochat.network.ApiService;
 import com.example.gochat.utilities.Constants;
 import com.example.gochat.utilities.PreferenceManager;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,7 +27,13 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,6 +42,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
+
+import javax.annotation.Nonnull;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ChatActivity extends BaseActivity {
 
@@ -42,6 +59,7 @@ public class ChatActivity extends BaseActivity {
     private FirebaseFirestore database;
     private String conversionId = null;
     private Boolean isReceiverAvailable = false;
+    public static final String TAG = "ChatActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +119,7 @@ public class ChatActivity extends BaseActivity {
                                     value.getLong(Constants.KEY_AVAILABILITY)).intValue();
                             isReceiverAvailable = available == 1;
                         }
+                        receiverUser.token = value.getString(Constants.KEY_FCM_TOKEN);
                     }
                     if(isReceiverAvailable)
                         binding.textUserAvailable.setText(R.string.online);
@@ -162,6 +181,28 @@ public class ChatActivity extends BaseActivity {
                 conversion.put(Constants.KEY_LAST_MESSAGE,binding.inputMessage.getText().toString().trim());
                 conversion.put(Constants.KEY_TIMESTAMP,new Date());
                 addConversion(conversion);
+            }
+            if(!isReceiverAvailable){
+                try {
+                    JSONArray tokens = new JSONArray();
+                    tokens.put(receiverUser.token);
+
+                    JSONObject data = new JSONObject();
+                    data.put(Constants.KEY_USER_ID,preferenceManager.getString(Constants.KEY_USER_ID));
+                    data.put(Constants.KEY_NAME,preferenceManager.getString(Constants.KEY_NAME));
+                    data.put(Constants.KEY_FCM_TOKEN,preferenceManager.getString(Constants.KEY_FCM_TOKEN));
+                    data.put(Constants.KEY_IMAGE,preferenceManager.getString(Constants.KEY_IMAGE));
+                    data.put(Constants.KEY_MESSAGE,binding.inputMessage.getText().toString().trim());
+
+                    JSONObject body = new JSONObject();
+                    body.put(Constants.REMOTE_MSG_DATA,data);
+                    body.put(Constants.REMOTE_MSG_REGISTRATION_IDS,tokens);
+
+                    sendNotification(body.toString());
+                }
+                catch (Exception e){
+                    showToast(e.getMessage());
+                }
             }
             binding.inputMessage.setText(null);
         }
@@ -226,4 +267,45 @@ public class ChatActivity extends BaseActivity {
       }
     };
 
+    private void sendNotification(String messageBody){
+        ApiClient.getClient().create(ApiService.class)
+                .sendMessage(
+                        Constants.getRemoteMsgHeaders(),
+                        messageBody
+                ).enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(@Nonnull Call<String> call,@Nonnull Response<String> response) {
+                if(response.isSuccessful()){
+                    try {
+                        if(response.body() != null){
+                            JSONObject responseJson = new JSONObject(response.body());
+                            JSONArray results = responseJson.getJSONArray("results");
+                            if(responseJson.getInt("failure") == 1){
+                                JSONObject error = (JSONObject) results.get(0);
+                                showToast(error.getString("error"));
+                                Log.d(TAG, "onResponse: " + error);
+                                return;
+                            }
+                        }
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
+                    showToast("Notification Send Successfully");
+                }
+                else
+                    showToast("Error : " + response.code());
+            }
+
+            @Override
+            public void onFailure(@Nonnull Call<String> call,@Nonnull Throwable t) {
+                showToast(t.getMessage());
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private void showToast(String message){
+        Toast.makeText(getApplicationContext(),message,Toast.LENGTH_SHORT).show();
+    }
 }

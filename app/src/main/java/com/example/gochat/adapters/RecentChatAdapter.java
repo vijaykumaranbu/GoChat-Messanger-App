@@ -59,7 +59,7 @@ public class RecentChatAdapter extends RecyclerView.Adapter<RecentChatAdapter.Re
                     UserAdapter.decodeImage(chatMessage.conversionImage)
             );
             itemContainerUserBinding.textUserName.setText(chatMessage.conversionName);
-            itemContainerUserBinding.textPhone.setText(chatMessage.message);
+            itemContainerUserBinding.textMessage.setText(chatMessage.message);
 
             itemContainerUserBinding.getRoot().setOnClickListener(view -> {
                 User user = new User();

@@ -58,7 +58,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         public void setBinding(User user) {
             itemContainerUserBinding.imageProfile.setImageBitmap(decodeImage(user.image));
             itemContainerUserBinding.textUserName.setText(user.name);
-            itemContainerUserBinding.textPhone.setText(user.phoneNumber);
+            itemContainerUserBinding.textMessage.setText(user.phoneNumber);
 
             itemContainerUserBinding.getRoot().setOnClickListener(view -> {
                 listener.OnUserClicked(user);
